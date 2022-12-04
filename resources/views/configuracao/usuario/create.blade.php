@@ -1,5 +1,7 @@
 @extends('adminlte::page')
-
+@section('content_header')
+    <link rel="stylesheet" href="{{ asset('select2/css/bootstrap-select.min.css') }}">
+@stop
 @section('content')
 
     <div class="content-header">
@@ -15,7 +17,9 @@
             </div>
         </div>
     </div>
-    @if (Auth::user()->tipo == 'Administrador' || Auth::user()->tipo == 'Gerente')
+    @if (Auth::user()->tipo == 'Supervisor')
+    @include('errors.info')
+    @else
         <div class="card card-primary card-outline">
             <div class="card-header">
                 <h3 class="card-title m-0">Novo Usuário</h3>
@@ -45,8 +49,8 @@
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         <div class="form-group">
                             <label>Sexo</label>
-                            <select name='sexo' class="form-control" required>
-                                <option value="" style="background-color: #A9D0F5; text-align: center">---Selecione o
+                            <select name='sexo' class="form-control selectpicker" data-live-search="true" required>
+                                <option value="">---Selecione o
                                     Sexo---</option>
                                 <option>Masculino</option>
                                 <option>Femenino</option>
@@ -69,13 +73,14 @@
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         <div class="form-group">
                             <label>Tipo</label>
-                            <select name='tipo' class="form-control" required>
-                                <option value="" style="background-color: #A9D0F5; text-align: center">---Selecione o
+                            <select name='tipo' class="form-control selectpicker" data-live-search="true" required>
+                                <option value="">---Selecione o
                                     Tipo
                                     de Usuário---</option>
+                                <option>Supervisor</option>
                                 <option>Administrador</option>
                                 <option>Recursos Humano</option>
-                                <option>STAFF</option>
+                                <option>Director Executivo</option>
                             </select>
                         </div>
                     </div>
@@ -105,7 +110,10 @@
                 <hr class="my-2">
             </div>
         </div>
-    @else
-        @include('errors.info')
+
     @endif
 @stop
+@section('js')
+<script src="{{ asset('select2/js/bootstrap-select.min.js') }}"></script>
+@stop
+

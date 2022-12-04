@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 use App\Http\Requests\ColFormadoFormRequest;
 use Illuminate\Support\Facades\DB as FacadesDB;
 
-
 class ColFormadoController extends Controller
 {
 

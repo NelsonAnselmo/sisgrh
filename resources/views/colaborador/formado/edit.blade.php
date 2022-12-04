@@ -17,7 +17,9 @@
             </div>
         </div>
     </div>
-    @if (Auth::user()->tipo == 'Administrador' || Auth::user()->tipo == 'Gerente')
+    @if (Auth::user()->tipo == 'Supervisor')
+        @include('errors.info')
+    @else
         <div class="card card-primary card-outline">
             <div class="card-header">
                 <h3 class="card-title m-0">Editar STAF => {{ $colaborador->nome }}</h3>
@@ -34,7 +36,11 @@
                     </div>
                 </div>
 
-                {!! Form::model($colaborador, ['method' => 'PATCH','route' => ['staff.update', $colaborador->idcolaborador], 'files' => 'true']) !!}
+                {!! Form::model($colaborador, [
+                    'method' => 'PATCH',
+                    'route' => ['staff.update', $colaborador->idcolaborador],
+                    'files' => 'true',
+                ]) !!}
                 {{ Form::token() }}
                 <div class="row">
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -47,13 +53,15 @@
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         <div class="form-group">
                             <label for="nome">Nome</label>
-                            <input type="text" name="nome" value="{{ $colaborador->nome }}" class="form-control" required>
+                            <input type="text" name="nome" value="{{ $colaborador->nome }}" class="form-control"
+                                required>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         <div class="form-group">
                             <label for="datanasc">Data Nasc.</label>
-                            <input type="date" value="{{ $colaborador->dataNascimento }}" name="datanasc" class="form-control">
+                            <input type="date" value="{{ $colaborador->dataNascimento }}" name="datanasc"
+                                class="form-control">
                         </div>
                     </div>
                     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
@@ -65,7 +73,8 @@
                     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
                         <div class="form-group">
                             <label for="dataemissao">Data Emissão</label>
-                            <input type="date" value="{{ $colaborador->dataEmisaoBi }}" name="dataemissao" class="form-control">
+                            <input type="date" value="{{ $colaborador->dataEmisaoBi }}" name="dataemissao"
+                                class="form-control">
                         </div>
                     </div>
                     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
@@ -105,7 +114,8 @@
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         <div class="form-group">
                             <label for="formacao">Formação Académica</label>
-                            <input type="text" name="formacao" value="{{ $colaborador->formacaoAcademica }}" class="form-control">
+                            <input type="text" name="formacao" value="{{ $colaborador->formacaoAcademica }}"
+                                class="form-control">
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -129,13 +139,15 @@
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         <div class="form-group">
                             <label for="telefone">Telefone</label>
-                            <input type="text" name="telefone" value="{{$colaborador->telefone }}" class="form-control">
+                            <input type="text" name="telefone" value="{{ $colaborador->telefone }}"
+                                class="form-control">
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="email" name="email" value="{{ $colaborador->email }}" class="form-control">
+                            <input type="email" name="email" value="{{ $colaborador->email }}"
+                                class="form-control">
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
@@ -154,14 +166,15 @@
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         <div class="form-group">
                             <label>Departamento</label>
-                            <select name='iddepartamento' class="form-control selectpicker" data-live-search="true" required>
+                            <select name='iddepartamento' class="form-control selectpicker" data-live-search="true"
+                                required>
                                 @foreach ($departamento as $dep)
-                                @if ($dep->iddepartamento == $colaborador->iddepartamento)
-                                    <option value="{{ $dep->iddepartamento }}" selected>{{ $dep->nome }}</option>
-                                @else
-                                    <option value="{{ $dep->iddepartamento }}">{{ $dep->nome }}</option>
-                                @endif
-                            @endforeach
+                                    @if ($dep->iddepartamento == $colaborador->iddepartamento)
+                                        <option value="{{ $dep->iddepartamento }}" selected>{{ $dep->nome }}</option>
+                                    @else
+                                        <option value="{{ $dep->iddepartamento }}">{{ $dep->nome }}</option>
+                                    @endif
+                                @endforeach
                             </select>
                         </div>
                     </div>
@@ -175,16 +188,15 @@
                         </div>
                     </div>
                 </div>
-                </div>                    
-                {!! Form::close() !!}
-
-                <hr class="my-2">
             </div>
+            {!! Form::close() !!}
+
+            <hr class="my-2">
         </div>
-    @else
-        @include('errors.info')
+        </div>
+
     @endif
 @stop
 @section('js')
-<script src="{{ asset('select2/js/bootstrap-select.min.js') }}"></script>
+    <script src="{{ asset('select2/js/bootstrap-select.min.js') }}"></script>
 @stop

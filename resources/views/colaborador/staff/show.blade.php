@@ -14,7 +14,9 @@
             </div>
         </div>
     </div>
-    @if (Auth::user()->tipo == 'Administrador' || Auth::user()->tipo == 'Gerente')
+    @if (Auth::user()->tipo == 'Supervisor')
+        @include('errors.info')
+    @else
         <div class="card card-primary card-outline">
             <div class="card-header">
                 <h3 class="card-title m-0">Detalhes do STAFF</h3>
@@ -146,7 +148,7 @@
 
                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                         <div class="form-group">
-                            <label>Data Fim</label>
+                            <label>Validade Contrato</label>
                             <p>{{ date('d-m-Y', strtotime($contratos->dataValidade)) }}</p>
                         </div>
                     </div>
@@ -193,7 +195,5 @@
                 <hr class="my-4">
             </div>
         </div>
-    @else
-        @include('errors.info')
     @endif
 @endsection

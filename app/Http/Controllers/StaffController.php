@@ -155,6 +155,18 @@ class StaffController extends Controller
     	return Redirect('colaborador/staff')->with('success', 'STAFF foi Eliminado com Sucesso');
     }
 
+    public function staff(){
+
+        $staff = FacadesDB::table('tbcolaborador as c')
+        ->join('tbcolaboradorcontrato as cc', 'c.processo', '=', 'cc.processo')
+        ->select('c.processo', 'c.nome', 'c.sexo', 'c.telefone')
+        ->where('cc.estado', '=', 'Activo')
+        ->where('c.tipo', '=', 'STAFF')
+        ->paginate(5);
+
+        return view('info.staff', ['staff'=>$staff]);
+    }
+
     public function PDFStaff()
 	{
 

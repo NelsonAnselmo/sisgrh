@@ -15,7 +15,9 @@
             </div>
         </div>
     </div>
-    @if (Auth::user()->tipo == 'Administrador' || Auth::user()->tipo == 'Gerente')
+    @if (Auth::user()->tipo == 'Supervisor')
+    @include('errors.info') 
+    @else
     <div class="card card-primary card-outline">
         <div class="card-header">
             <h3 class="card-title m-0">Lista de STAF</h3>
@@ -82,7 +84,7 @@
                                             class="btn btn-primary btn-sm" title="Editar">
                                             <i class="right fa fa-edit"></i>
                                         </a>
-                                        @if (Auth::user()->tipo == 'Administrador')
+                                        @if (Auth::user()->tipo == 'Administrador' || Auth::user()->tipo == 'Recursos Humano')
                                         <a href="{{ 'StaffController@destroy', $staff->idcolaborador }}"
                                             class="btn btn-danger btn-sm"
                                             data-target="#modal-delete-{{ $staff->idcolaborador }}" data-toggle="modal"
@@ -113,7 +115,5 @@
 
         </div>
     </div>
-    @else
-    @include('errors.info')
     @endif
 @stop

@@ -14,7 +14,9 @@
             </div>
         </div>
     </div>
-    @if (Auth::user()->tipo == 'Administrador' || Auth::user()->tipo == 'Gerente')
+    @if (Auth::user()->tipo == 'Supervisor')
+    @include('errors.info')
+    @else
     <div class="lockscreen-wrapper">
         <div class="lockscreen-logo">
             <a href="#"><i class="fa fa-book"></i>
@@ -35,7 +37,6 @@
         <br>
         <a href="/home" class="btn btn-danger"><i class="fas fa-reply"></i>Voltar</a>
     </div>
-    @else
-    @include('errors.info')
+   
     @endif
 @stop

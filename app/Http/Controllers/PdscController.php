@@ -149,6 +149,18 @@ class PdscController extends Controller
     	return Redirect('colaborador/pdsc')->with('success', 'PDSC foi Eliminado com Sucesso');
     }
 
+    public function pdsc(){
+
+        $pdsc = FacadesDB::table('tbcolaborador as c')
+        ->join('tbcolaboradorcontrato as cc', 'c.processo', '=', 'cc.processo')
+        ->select('c.processo', 'c.nome', 'c.sexo', 'c.telefone')
+        ->where('cc.estado', '=', 'Activo')
+        ->where('c.tipo', '=', 'PDSC')
+        ->paginate(5);
+
+        return view('info.pdsc', ['pdsc'=>$pdsc]);
+    }
+
     public function PDFPdsc()
 	{
 

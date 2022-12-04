@@ -25,16 +25,18 @@
         figure {
             float: right;
             width: 20%;
-
+            margin-top: 100px;
         }
     </style>
     <title>sisGRH | PDFStaff</title>
 </head>
 
 <body>
-    @if (Auth::user()->tipo == 'Administrador' || Auth::user()->tipo == 'Gerente')
+    @if (Auth::user()->tipo == 'Supervisor')
+    @include('errors.info')
+    @else
         <figure>
-            <img src="{{ 'storage/imagens/artigos/' . $entidade->imagem }}" alt="Sem Imagem" height="200px" width="200px">
+            <img src="{{ 'storage/imagens/artigos/' . $entidade->imagem }}" alt="Sem Imagem" height="120px" width="180px">
         </figure>
 
         <h3>{{ $entidade->nome }}</h3>
@@ -78,8 +80,6 @@
                 @endif
             </tfoot>
         </table>
-    @else
-        @include('errors.info')
     @endif
 </body>
 

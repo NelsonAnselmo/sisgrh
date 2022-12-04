@@ -14,7 +14,9 @@
             </div>
         </div>
     </div>
-    @if (Auth::user()->tipo == 'Administrador' || Auth::user()->tipo == 'Gerente')
+    @if (Auth::user()->tipo == 'Supervisor')
+    @include('errors.info')
+    @else
         <div class="card card-primary card-outline">
             <div class="card-header">
                 <h3 class="card-title m-0">Detalhes da Entidade</h3>
@@ -93,7 +95,7 @@
                     </div>
                     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 float-right">
                         <img src="{{ asset('storage/imagens/artigos/' . $entidade->imagem) }}" alt="Sem Imagem"
-                            height="200px" width="200px" class="img-circle img-bordered-sm float-right">
+                            height="120px" width="150px" class="img-circle img-bordered-sm float-right">
                     </div>
 
                 </div><br>
@@ -105,7 +107,6 @@
                 <hr class="my-4">
             </div>
         </div>
-    @else
-        @include('errors.info')
+
     @endif
 @endsection

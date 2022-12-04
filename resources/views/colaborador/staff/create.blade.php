@@ -17,7 +17,9 @@
             </div>
         </div>
     </div>
-    @if (Auth::user()->tipo == 'Administrador' || Auth::user()->tipo == 'Gerente')
+    @if (Auth::user()->tipo == 'Supervisor')
+        @include('errors.info')
+    @else
         <div class="card card-primary card-outline">
             <div class="card-header">
                 <h3 class="card-title m-0">Novo STAF</h3>
@@ -152,7 +154,8 @@
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         <div class="form-group">
                             <label>Departamento</label>
-                            <select name='iddepartamento' class="form-control selectpicker" data-live-search="true" required>
+                            <select name='iddepartamento' class="form-control selectpicker" data-live-search="true"
+                                required>
                                 <option value="" style="text-align: center">---Selecionar
                                     Departamento---</option>
                                 @foreach ($departamentos as $dep)
@@ -188,10 +191,8 @@
                 <hr class="my-2">
             </div>
         </div>
-    @else
-        @include('errors.info')
     @endif
 @stop
 @section('js')
-<script src="{{ asset('select2/js/bootstrap-select.min.js') }}"></script>
+    <script src="{{ asset('select2/js/bootstrap-select.min.js') }}"></script>
 @stop

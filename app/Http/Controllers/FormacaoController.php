@@ -74,6 +74,15 @@ class FormacaoController extends Controller
     	return Redirect('configuracao/formacao')->with('success', 'Formação foi Eliminada com Sucesso');
     }
 
+	public function formacoes(){
+
+		$curso = FacadesDB::table('tbformacao')
+        ->where('condicao', '=', '1')
+        ->paginate(5);
+
+		return view('info.curso', ['curso'=>$curso]);
+	}
+
 	public function PDFFormacao()
 	{
 

@@ -74,6 +74,15 @@ class DepartamentoController extends Controller
     	return Redirect('configuracao/departamento')->with('success', 'Departamento foi Eliminada com Sucesso');
     }
 
+	public function departamento(){
+
+        $departamento = FacadesDB::table('tbdepartamento')
+        ->where('condicao', '=', '1')
+        ->paginate(5);
+
+		return view('info.departamento', ['departamento'=>$departamento]);
+	}
+
 	public function PDFDepartamento()
 	{
 

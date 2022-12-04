@@ -15,7 +15,9 @@
             </div>
         </div>
     </div>
-    @if (Auth::user()->tipo == 'Administrador' || Auth::user()->tipo == 'Gerente')
+    @if (Auth::user()->tipo == 'Supervisor')
+    @include('errors.info')
+    @else
     <div class="card card-primary card-outline">
         <div class="card-header">
             <h3 class="card-title m-0">Lista de Usuário</h3>
@@ -35,7 +37,7 @@
                         </button>
                     </a>
                     <a href="{{ URL::action('UserController@PDFUser') }}" class="btn btn-outline-primary"
-                        title="Imprimir"target="_blank">
+                        title="Imprimir" target="_blank">
                         <i class="right fa fa-print"></i>
                     </a>
                 </div>
@@ -111,7 +113,6 @@
 
         </div>
     </div>
-    @else
-    @include('errors.info')
+    
     @endif
 @stop

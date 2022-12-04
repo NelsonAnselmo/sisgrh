@@ -14,7 +14,9 @@
             </div>
         </div>
     </div>
-
+    @if (Auth::user()->tipo == 'Supervisor')
+    @include('errors.info')
+    @else
     <div class="card card-primary card-outline">
         <div class="card-header">
             <h3 class="card-title m-0">Nova Entidade</h3>
@@ -106,4 +108,5 @@
             <hr class="my-2">
         </div>
     </div>
+    @endif
 @stop

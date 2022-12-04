@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'sisRH - KUGARISSICA',
+    'title' => 'sisGRH - KUGARISSICA',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -315,6 +315,10 @@ return [
                     'url'     => 'colaborador/pdsc',
                 ],
                 [
+                    'text'    => 'CONTRATO',
+                    'url'     => 'colaborador/contrato',
+                ],
+                [
                     'text'    => 'HABILITAÇÃO',
                     'url'     => 'colaborador/formado',
                 ],
@@ -327,11 +331,11 @@ return [
             'submenu' => [
                 [
                     'text' => 'STAFF',
-                    'url'  => '#',
+                    'url'  => 'desenpenho/staff',
                 ],
                 [
                     'text'    => 'PDSC',
-                    'url'     => '#',
+                    'url'     => 'desenpenho/pdsc',
                 ],
         ],
         ],

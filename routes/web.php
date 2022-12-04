@@ -20,7 +20,15 @@ Route::resource('configuracao/contrato','ContratoController');
 Route::resource('configuracao/formacao','FormacaoController');
 Route::resource('configuracao/entidade','EntidadeController');
 Route::resource('colaborador/formado','ColFormadoController');
+Route::resource('desenpenho/pdsc','PdscdesenpenhoController');
+Route::resource('desenpenho/staff','StaffdesenpenhoController');
+Route::resource('colaborador/contrato','ColCotratohoController');
 Route::resource('configuracao/departamento','DepartamentoController');
+
+Route::get('informacoes/pdsc','PdscController@pdsc');
+Route::get('informacoes/staff','StaffController@staff');
+Route::get('informacoes/formacoes','FormacaoController@formacoes');
+Route::get('informacoes/departamento','DepartamentoController@departamento');
 
 Route::get('beckup/beckups','BackupController@backup');
 Route::get('colaborador/pdsc/pdf/Pdsc','PdscController@PDFPdsc');
